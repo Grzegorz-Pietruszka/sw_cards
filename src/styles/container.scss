@@ -1,0 +1,68 @@
+.container {
+    @extend %center-position;
+    border: 2px $sw-color solid;
+    width: 95%;
+    height: 70%;
+    z-index: 99999;
+    overflow-x: hidden;
+    margin-top: 10px;
+
+    .container-flex {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @media (min-width: 500px) and (max-width: 968px) and (orientation:landscape) {
+            flex-direction: row;
+            align-items: center;
+            align-content: center;
+
+            .img-box {
+                border: none;
+            }
+
+            .info-box {
+                flex-basis: 30%;
+            }
+        }
+    }
+
+    .img-box {
+        display: block;
+        margin: 10px auto;
+        border: 2px $sw-color solid;
+        height: 30%;
+
+        background-color: img {
+            max-width: 100%;
+            max-height: 60%;
+        }
+    }
+
+    .info-box {
+        p {
+            color: #fff;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+    }
+
+    @media all and (min-width: 768px) and (max-width: 959px) {
+        width: 70%;
+    }
+
+    @media all and (min-width: 960px) {
+        max-width: 40%;
+        height: 50%;
+
+        .info-box {
+            p {
+                font-size: 2rem;
+                margin-bottom: 5px;
+            }
+
+        }
+    }
+
+
+}

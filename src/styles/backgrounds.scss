@@ -1,0 +1,64 @@
+@mixin animation($background-img, $percent, $z-index, $time-duration) {
+    background: url($background-img) repeat $percent $percent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: $z-index;
+
+    -webkit-animation-name: STAR-MOVE;
+    -webkit-animation-duration: $time-duration;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+}
+
+@keyframes STAR-MOVE {
+    from {
+        background-position: 5% 5%
+    }
+
+    to {
+        background-position: 1300% 600%
+    }
+}
+
+.background {
+    @include animation('../img/background.png', 5%, 100, 200s);
+}
+
+.midground {
+    @include animation('../img/midground.png', 20%, 200, 150s);
+}
+
+.foreground {
+    @include animation('../img/foreground.png', 35%, 300, 100s);
+}
+
+.form {
+    z-index: 99999;
+    position: relative;
+    color: $sw-color;
+    padding: 10px 0;
+
+    label {
+        border-top: 2px $sw-color solid;
+        border-bottom: 2px $sw-color solid;
+        padding: 5px 0;
+        margin: 0 auto;
+        line-height: 10px;
+        font-size: 1.5rem;
+    }
+
+    select {
+        background-color: $sw-color;
+        padding: 3px;
+        font-size: 1em;
+    }
+
+    input {
+        padding: 8px;
+        background-color: $sw-color;
+        margin: 0 0 10px 10px;
+    }
+}

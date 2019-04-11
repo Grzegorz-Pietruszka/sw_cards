@@ -1,6 +1,4 @@
-import React, {
-  Component
-} from 'react';
+import React, { Component } from 'react';
 import Character from './Character-card';
 import spinner from './img/spinner.svg';
 
@@ -15,17 +13,17 @@ class App extends Component {
     };
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
       chosenCharacter: e.target.value
     });
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     this.setState({
       chosenCharacterData: this.state.characters.filter(
-        (char) => char.name === this.state.chosenCharacter
+        char => char.name === this.state.chosenCharacter
       )
     });
   };
@@ -35,8 +33,8 @@ class App extends Component {
       isLoading: true
     });
     fetch('https://swapi.co/api/people/?page=2')
-      .then((response) => response.json())
-      .then((data) =>
+      .then(response => response.json())
+      .then(data =>
         this.setState({
           isLoading: false,
           characters: data.results,
@@ -44,7 +42,7 @@ class App extends Component {
           chosenCharacterData: data.results[0]
         })
       )
-      .catch((error) => console.log(error));
+      .catch(error => console.log(error));
   };
 
   render() {
@@ -55,67 +53,35 @@ class App extends Component {
       chosenCharacterData
     } = this.state;
     if (isLoading) {
-      return <img src = {
-        spinner
-      }
-      className = "spinner"
-      alt = "loading spinner" / > ;
+      return <img src={spinner} className="spinner" alt="loading spinner" />;
     } else {
       if (characters.length > 0) {
-        return ( <
-          div >
-          <
-          div className = "background" / >
-          <
-          div className = "midground" / >
-          <
-          div className = "foreground" / >
-          <
-          div className = "form" >
-          <
-          form onSubmit = {
-            this.handleSubmit
-          } >
-          <
-          label className = "label" >
-          Choose a SW character:
-          <
-          select value = {
-            chosenCharacter
-          }
-          onChange = {
-            this.handleChange
-          } > {
-            characters.map((character) => ( <
-              option key = {
-                character.name
-              }
-              value = {
-                character.name
-              } > {
-                character.name
-              } <
-              /option>
-            ))
-          } <
-          /select> <
-          /label> <
-          input type = "submit"
-          value = "Submit" / >
-          <
-          /form> <
-          /div> <
-          div className = "container" >
-          <
-          div className = "container-background" >
-          <
-          Character chosenCharacterData = {
-            chosenCharacterData[0]
-          }
-          /> <
-          /div> <
-          /div> <
-          /div>
+        return (
+          <div>
+            <div className="background" />
+            <div className="midground" />
+            <div className="foreground" />
+            <div className="form">
+              <form onSubmit={this.handleSubmit}>
+                <label className="label">
+                  Choose a SW character:
+                  <select value={chosenCharacter} onChange={this.handleChange}>
+                    {characters.map(character => (
+                      <option key={character.name} value={character.name}>
+                        {character.name}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <input type="submit" value="Submit" />
+              </form>
+            </div>
+            <div className="container">
+              <div className="container-background">
+                <Character chosenCharacterData={chosenCharacterData[0]} />
+              </div>
+            </div>
+          </div>
         );
       }
       return null;

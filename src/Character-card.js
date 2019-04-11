@@ -48,7 +48,7 @@ export default class Character extends Component {
         <div className="container-flex">
           <div className="img-box">
             <img src={img} alt={name + ' GIF'} />
-          </div>{' '}
+          </div>
           <div className="info-box">
             <p> Name: {name} </p> <p> Eye color: {eye_color} </p>
             <p> Height: {height} </p> <p> Skin color: {skin_color} </p>
